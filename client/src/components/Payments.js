@@ -19,4 +19,3 @@ class Payments extends Component {
 }
 
 export default connect(null, actions)(Payments);
-//
