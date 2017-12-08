@@ -31,13 +31,13 @@ class Header extends Component {
 	render() {
 		return (
 			<nav>
-				<div className="nav-wrapper">
+				<div className="nav-wrapper indigo">
 					<Link
 						to={this.props.auth ? '/surveys' : '/'}
-						className="left brand-logo">
+						className="left brand-logo" style={{marginLeft: '20px'}}>
 						Emailr
 					</Link>
-					<ul className="right">{this.renderContent()}</ul>
+					<ul className="right" style={{marginRight: '10px'}}>{this.renderContent()}</ul>
 				</div>
 			</nav>
 		);

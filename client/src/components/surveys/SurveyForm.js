@@ -23,6 +23,8 @@ class SurveyForm extends Component {
 	render() {
 		return (
 			<div>
+				<h2>Fill in your campaign details!</h2>
+				<p>Recipient emails must be separated by a comma and space.</p>
 				<form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
 					{this.renderFields()}
 					<Link to="/surveys" className="red btn-flat white-text">
