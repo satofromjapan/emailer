@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSurveys } from '../../actions';
+import { fetchSurveys, deleteSurvey } from '../../actions';
 
 class SurveyList extends Component {
 	componentDidMount() {
@@ -8,6 +8,7 @@ class SurveyList extends Component {
 	}
 
 	renderSurveys() {
+		console.log(this.props.surveys);
 		return this.props.surveys.reverse().map(survey => {
 			return (
 				<div className="card blue-grey darken-1" key={survey._id}>
@@ -21,6 +22,11 @@ class SurveyList extends Component {
 					<div className="card-action">
 						<a>Yes: {survey.yes}</a>
 						<a>No: {survey.no}</a>
+						<button
+							className="right btn"
+							onClick={() => this.props.deleteSurvey(survey._id)}>
+							Delete
+						</button>
 					</div>
 				</div>
 			);
@@ -35,4 +41,6 @@ function mapStateToProps({ surveys }) {
 	return { surveys };
 }
 
-export default connect(mapStateToProps, { fetchSurveys })(SurveyList);
+export default connect(mapStateToProps, { fetchSurveys, deleteSurvey })(
+	SurveyList
+);

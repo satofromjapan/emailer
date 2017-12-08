@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const Path = require('path-parser');
+const path = require('path');
 const { URL } = require('url');
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
@@ -11,6 +12,15 @@ const Survey = mongoose.model('surveys');
 
 module.exports = app => {
 	app.get('/api/surveys', requireLogin, async (req, res) => {
+		const surveys = await Survey.find({ _user: req.user.id }).select({
+			recipients: false
+		});
+
+		res.send(surveys);
+	});
+
+	app.delete('/api/surveys/:surveyId', requireLogin, async (req, res) => {
+		await Survey.findByIdAndRemove(req.params.surveyId, err => {});
 		const surveys = await Survey.find({ _user: req.user.id }).select({
 			recipients: false
 		});
